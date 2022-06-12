@@ -245,6 +245,18 @@ class MerkleTree:
             node = node.parent
 
         return proof
+    
+    
+def proof_of_correct_update(index : int,value : bytes)->List[List[bytes]]:
+    obj=MerkleTree(l1)
+    old_root = obj.root_node
+    old_leaf_hash=l1[index]
+    merkle_proof=obj.prove_leaf(index)
+    obj.set(index,value)
+    new_root = obj.root_node
+
+    proof_correct_update=[[old_root],[old_leaf_hash],[merkle,proof],[new_root]]
+    return proof_correct_update
 
 
 def get_merkleized_map_commitment(mapping: Mapping[bytes, bytes]) -> bytes:
