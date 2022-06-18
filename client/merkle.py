@@ -1,6 +1,6 @@
 from typing import List, Iterable, Mapping
 
-from .common import write_varint, sha256
+from .common import sha256
 
 NIL = bytes([0] * 32)
 
@@ -128,7 +128,7 @@ class MerkleTree:
     """
 
     def __init__(self, elements: Iterable[bytes] = []):
-        self.leaves = [Node(None, None, None, el) for el in elements]
+        self.leaves = [Node(None, None, None, element_hash(el)) for el in elements]
         n_elements = len(self.leaves)
         if n_elements > 0:
             self.root_node = make_tree(self.leaves, 0, n_elements)
@@ -152,6 +152,9 @@ class MerkleTree:
 
     def add(self, x: bytes) -> None:
         """Add an element as new leaf, and recompute the tree accordingly. Cost O(log n)."""
+        
+        self.prev_hash = self.root_node.value
+        x=element_hash(x)
 
         if len(x) != 32:
             raise ValueError("Inserted elements must be exactly 32 bytes long")
@@ -199,6 +202,12 @@ class MerkleTree:
 
         Cost: Worst case O(log n).
         """
+        
+        self.prev_root=self.root_node.value
+        self.prev_leaf_hash = self.get(index)
+
+        x=element_hash(x)
+        
         assert 0 <= index <= len(self.leaves)
 
         if not (0 <= index <= len(self.leaves)):
@@ -225,6 +234,7 @@ class MerkleTree:
 
     def leaf_index(self, x: bytes) -> int:
         """Return the index of the leaf with hash `x`. Raises `ValueError` if not found."""
+        x=element_hash(x)
         idx = 0
         while idx < len(self):
             if self.leaves[idx].value == x:
