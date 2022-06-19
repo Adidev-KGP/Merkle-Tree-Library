@@ -255,16 +255,23 @@ class MerkleTree:
             node = node.parent
 
         return proof
+    
+    def proof_of_correct_update(self, index:int, x:bytes)-> List[bytes]:
+       
+ 
+        x=element_hash(x)      
 
+        assert 0 <= index <= len(self.leaves)
 
-def get_merkleized_map_commitment(mapping: Mapping[bytes, bytes]) -> bytes:
-    """Returns a serialized Merkleized map commitment, encoded as the concatenation of:
-       - the number of key/value pairs, as a Bitcoin-style varint;
-       - the root of the Merkle tree of the keys
-       - the root of the Merkle tree of the values.
-    """
+        if len(x) != 32:
+            raise ValueError("Inserted elements must be exactly 32 bytes long.")
 
-    items_sorted = list(sorted(mapping.items()))
-    keys_hashes = [element_hash(i[0]) for i in items_sorted]
-    values_hashes = [element_hash(i[1]) for i in items_sorted]
-    return write_varint(len(mapping)) + MerkleTree(keys_hashes).root + MerkleTree(values_hashes).root
+        proof_correct_update = []
+        for  x in self.prove_leaf(index):
+            proof_correct_update.append(x)
+        
+        proof_correct_update.append(self.root)
+        proof_correct_update.append(self.prev_root)
+        proof_correct_update.append(self.prev_leaf_hash)
+
+        return proof_correct_update
