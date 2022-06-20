@@ -1,7 +1,6 @@
 from typing import List, Iterable, Mapping
 import hashlib
 
-from .common import sha256
 
 NIL = bytes([0] * 32)
 
