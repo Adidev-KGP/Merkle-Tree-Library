@@ -1,4 +1,5 @@
 from typing import List, Iterable, Mapping
+import hashlib
 
 from .common import sha256
 
@@ -48,6 +49,9 @@ def largest_power_of_2_less_than(n: int) -> int:
         return n // 2
     else:
         return 1 << floor_lg(n)
+    
+def sha256(s: bytes) -> bytes:
+    return hashlib.new('sha256', s).digest()-
 
 
 def element_hash(element_preimage: bytes) -> bytes:
