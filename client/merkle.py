@@ -1,6 +1,5 @@
-from typing import List, Iterable, Mapping
+from typing import List, Iterable
 import hashlib
-
 
 NIL = bytes([0] * 32)
 
@@ -35,8 +34,8 @@ def is_power_of_2(n: int) -> bool:
     """For a positive integer `n`, returns `True` is `n` is a perfect power of 2, `False` otherwise."""
 
     assert n >= 1
-
-    return n & (n - 1) == 0
+    
+    return n &(n-1) == 0
 
 
 def largest_power_of_2_less_than(n: int) -> int:
@@ -50,7 +49,7 @@ def largest_power_of_2_less_than(n: int) -> int:
         return 1 << floor_lg(n)
     
 def sha256(s: bytes) -> bytes:
-    return hashlib.new('sha256', s).digest()-
+    return hashlib.new('sha256', s).digest()
 
 
 def element_hash(element_preimage: bytes) -> bytes:
@@ -156,7 +155,6 @@ class MerkleTree:
     def add(self, x: bytes) -> None:
         """Add an element as new leaf, and recompute the tree accordingly. Cost O(log n)."""
         
-        self.prev_hash = self.root_node.value
         x=element_hash(x)
 
         if len(x) != 32:
@@ -205,9 +203,6 @@ class MerkleTree:
 
         Cost: Worst case O(log n).
         """
-        
-        self.prev_root=self.root_node.value
-        self.prev_leaf_hash = self.get(index)
 
         x=element_hash(x)
         
