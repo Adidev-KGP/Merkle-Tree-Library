@@ -154,7 +154,7 @@ class MerkleTree:
     def add(self, x: bytes) -> None:
         """Add an element as new leaf, and recompute the tree accordingly. Cost O(log n)."""
         
-        x=element_hash(x)
+        x = element_hash(x)
 
         if len(x) != 32:
             raise ValueError("Inserted elements must be exactly 32 bytes long")
@@ -202,7 +202,7 @@ class MerkleTree:
         Cost: Worst case O(log n).
         """
 
-        x=element_hash(x)
+        x = element_hash(x)
         
         assert 0 <= index <= len(self.leaves)
 
@@ -243,7 +243,7 @@ class MerkleTree:
 
     def leaf_index(self, x: bytes) -> int:
         """Return the index of the leaf with hash `x`. Raises `ValueError` if not found."""
-        x=element_hash(x)
+        x = element_hash(x)
         idx = 0
         while idx < len(self):
             if self.leaves[idx].value == x:

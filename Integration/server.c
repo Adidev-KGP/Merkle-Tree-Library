@@ -61,7 +61,7 @@ void parse_verify(char buffer[], int *len, int *ind, int *proof_size, byte root[
 
 }
 
-int parse_set(char buffer[], int *len, int *ind, int *proof_size, byte old_root[], byte old_leaf[], byte new_root[], byte new_leaf[], byte proof[][32]){
+void parse_set(char buffer[], int *len, int *ind, int *proof_size, byte old_root[], byte old_leaf[], byte new_root[], byte new_leaf[], byte proof[][32]){
 
     char * token = strtok(buffer, " ");
     char extracted_data[270][70];

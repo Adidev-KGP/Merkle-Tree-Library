@@ -1,14 +1,12 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 4.2.1
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul  5 23:28:15 2022
+# Make data base, printed on Wed Jul  6 10:42:52 2022
 
 # Variables
 
@@ -51,7 +49,7 @@ SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:29445
+JOURNAL_STREAM = 8:29283
 # makefile (from 'Makefile', line 3)
 CFLAGS = -g  
 # environment
@@ -79,7 +77,7 @@ _ = /snap/code/99/usr/share/code/code
 # makefile (from 'Makefile', line 4)
 CPPFLAGS = 
 # environment
-MANAGERPID = 710
+MANAGERPID = 682
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -89,11 +87,11 @@ GSETTINGS_SCHEMA_DIR = /snap/code/99/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /home/adidev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/adidev/.local/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/adidev-VirtualBox:@/tmp/.ICE-unix/1009,unix/adidev-VirtualBox:/tmp/.ICE-unix/1009
+SESSION_MANAGER = local/adidev-VirtualBox:@/tmp/.ICE-unix/1007,unix/adidev-VirtualBox:/tmp/.ICE-unix/1007
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +109,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 5ae0cb3997c84e619a1e009baf1291fb
+INVOCATION_ID = 7f047d7dcc1d49dda25ff994ea80ed0b
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # makefile (from 'Makefile', line 6)
@@ -125,7 +123,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 15229
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5907
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,7 +137,7 @@ PWD = /home/adidev/Merkle-Tree_Library
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 970
+SSH_AGENT_PID = 953
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -191,7 +189,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-228de578-3c65-403b-bd3e-45a7c3f12f75.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ce0ef0fa-e0f3-4d00-9c38-f38bd332c12f.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -263,7 +261,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 15273
+VSCODE_PID = 5949
 # variable set hash-table stats:
 # Load=126/1024=12%, Rehash=0, Collisions=24/162=15%
 
@@ -273,17 +271,17 @@ VSCODE_PID = 15273
 
 # Directories
 
-# . (device 2053, inode 1060881): 10 files, no impossibilities.
+# . (device 2053, inode 1060881): 13 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
+ 
 # Files
 
- 
 # Not a target:
 Verifier/verifier.c:
 #  Implicit rule search has been done.
@@ -322,7 +320,7 @@ all: Integration/server.c Verifier/verifier.c
 # Not a target:
 Integration/server.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-05 20:57:58.176743905
+#  Last modified 2022-07-06 01:28:45.357749132
 #  File has been updated.
 #  Successfully updated.
 
@@ -360,12 +358,12 @@ clean:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 18 / storage = 195 B / avg = 10 B
-# current buf: size = 8162 B / used = 195 B / count = 18 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 230 B / avg = 10 B
+# current buf: size = 8162 B / used = 230 B / count = 21 / avg = 10 B
 
-# strcache performance: lookups = 26 / hit rate = 30%
+# strcache performance: lookups = 29 / hit rate = 27%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=1/26=4%
-# Finished Make data base on Tue Jul  5 23:28:15 2022
+# Load=21/8192=0%, Rehash=0, Collisions=1/29=3%
+# Finished Make data base on Wed Jul  6 10:42:52 2022
 
  
