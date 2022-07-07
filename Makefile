@@ -7,7 +7,7 @@ LDLIBS += -lm -lcrypto #-lm for pow inside math.h , -lcrypto for openssl
 
 BINS = a.out
 
-all: ./Integration/server.c ./Verifier/verifier.c
+all: ./integration/server.c ./verifier/verifier.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) $^ $(LDLIBS)  
 
 clean:

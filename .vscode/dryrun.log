@@ -1,5 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/adidev/Merkle-Tree_Library'
-gcc -g    Integration/server.c Verifier/verifier.c -lm -lcrypto   
+gcc -g    integration/server.c verifier/verifier.c -lm -lcrypto   
 make: Leaving directory '/home/adidev/Merkle-Tree_Library'
  

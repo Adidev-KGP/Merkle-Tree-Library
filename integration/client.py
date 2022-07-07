@@ -8,7 +8,7 @@ import sys
 from urllib3 import proxy_from_url
 sys.path.append("")
 
-from Prover.merkle import MerkleTree ,element_hash
+from prover.merkle import MerkleTree ,element_hash
 
 obj = MerkleTree(transactions)
 
@@ -28,16 +28,12 @@ while message!="end":
         print("[DSICONNECTED] Connection closed")
         break
 
-    print("[Server] ",data)
-    if data.split(" ")[0] == "get":
-        leaf=obj.get(int(data.split(" ")[1]))
-        message = leaf.hex()
-        client.sendall(message.encode())
-        
-    elif data.split(" ")[0]=="verify":
+    print("[Server]",data)
+
+    if data.split(" ")[0]=="get":
         leaf=obj.get(int(data.split(" ")[1]))
         proof = obj.prove_leaf(int(data.split(" ")[1]))
-        message = ""
+        message = "v"
         message = message+str(obj.__len__())+" "
         message = message+data.split(" ")[1][0]+" "
         message = message+str(len(proof))+" "
@@ -64,7 +60,7 @@ while message!="end":
         proof = obj.prove_leaf(3)
        
         proof_update = obj.set(index, value)
-        message =  ""
+        message =  "s"
         message = message+str(obj.__len__())+" "
         message = message+data.split(" ")[1][0]+" "
         message = message+str(len(proof))+" "

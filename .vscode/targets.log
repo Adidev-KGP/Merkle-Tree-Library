@@ -1,22 +1,39 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 4.2.1
+ 
 # Built for x86_64-pc-linux-gnu
+ 
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
+ 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
 # This is free software: you are free to change and redistribute it.
+ 
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Wed Jul  6 10:42:52 2022
+ 
+# Make data base, printed on Thu Jul  7 05:48:09 2022
+ 
 
 # Variables
+ 
 
+ 
 # 'override' directive
+ 
 GNUMAKEFLAGS := 
+ 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
+ 
 ?F = $(notdir $?)
+ 
 # environment
+ 
 DESKTOP_SESSION = ubuntu
 # default
 .SHELLFLAGS := -c
@@ -30,8 +47,8 @@ XDG_SESSION_TYPE = x11
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
-# environment
-IM_CONFIG_PHASE = 1
+# makefile (from 'Makefile', line 4)
+CPPFLAGS = 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -47,9 +64,11 @@ SHELL = /bin/sh
 # environment
 SNAP_DATA = /var/snap/code/99
 # environment
+VTE_VERSION = 6003
+# environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:29283
+JOURNAL_STREAM = 8:29796
 # makefile (from 'Makefile', line 3)
 CFLAGS = -g  
 # environment
@@ -63,7 +82,7 @@ MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+IM_CONFIG_PHASE = 1
 # environment
 USERNAME = adidev
 # environment
@@ -73,16 +92,14 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-_ = /snap/code/99/usr/share/code/code
-# makefile (from 'Makefile', line 4)
-CPPFLAGS = 
-# environment
-MANAGERPID = 682
+MANAGERPID = 690
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
-VSCODE_CWD = /home/adidev
+VSCODE_CWD = /home/adidev/Merkle-Tree_Library
+ 
 # environment
+ 
 GSETTINGS_SCHEMA_DIR = /snap/code/99/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
@@ -91,7 +108,7 @@ PATH = /home/adidev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/adidev-VirtualBox:@/tmp/.ICE-unix/1007,unix/adidev-VirtualBox:/tmp/.ICE-unix/1007
+SESSION_MANAGER = local/adidev-VirtualBox:@/tmp/.ICE-unix/1015,unix/adidev-VirtualBox:/tmp/.ICE-unix/1015
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -109,7 +126,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 7f047d7dcc1d49dda25ff994ea80ed0b
+INVOCATION_ID = fc384d3e0ba54a9ca698de014ad44eef
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # makefile (from 'Makefile', line 6)
@@ -117,13 +134,11 @@ LDLIBS = -lm -lcrypto
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
-LS_COLORS = 
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5907
 # automatic
 %F = $(notdir $%)
 # environment
@@ -137,7 +152,7 @@ PWD = /home/adidev/Merkle-Tree_Library
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 953
+SSH_AGENT_PID = 966
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -174,6 +189,8 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 MAKELEVEL := 0
 # environment
 SNAP_REAL_HOME = /home/adidev
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -183,13 +200,13 @@ QT_IM_MODULE = ibus
 # environment
 SNAP_USER_DATA = /home/adidev/snap/code/99
 # environment
-SHLVL = 0
+SHLVL = 1
 # makefile (from 'Makefile', line 1)
 CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ce0ef0fa-e0f3-4d00-9c38-f38bd332c12f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-2e6d78c7-3679-439e-9c14-a32c946bb093.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -204,6 +221,8 @@ XDG_CURRENT_DESKTOP = Unity
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := make
+# environment
+OLDPWD = /home/adidev
 # default
 .VARIABLES := 
 # makefile (from 'Makefile', line 8)
@@ -214,8 +233,6 @@ BINS = a.out
 LANGUAGE = en_IN:en
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-13bb3bd7-1.68.1-main.sock
-# environment
-BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -242,8 +259,12 @@ SNAP_NAME = code
 LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/1e93562b_abcd_45fd_ad75_0abbfc122fb9
 # automatic
 ^F = $(notdir $^)
+# environment
+GNOME_TERMINAL_SERVICE = :1.70
 # default
 SUFFIXES := 
 # environment
@@ -261,9 +282,11 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5949
+TERM = xterm-256color
+# environment
+VSCODE_PID = 1909
 # variable set hash-table stats:
-# Load=126/1024=12%, Rehash=0, Collisions=24/162=15%
+# Load=128/1024=12%, Rehash=0, Collisions=18/164=11%
 
 # Pattern-specific Variable Values
 
@@ -271,25 +294,24 @@ VSCODE_PID = 5949
 
 # Directories
 
-# . (device 2053, inode 1060881): 13 files, no impossibilities.
+# . (device 2053, inode 1060881): 17 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
- 
 # Files
 
 # Not a target:
-Verifier/verifier.c:
+verifier/verifier.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-07-05 23:02:59.135305988
 #  File has been updated.
 #  Successfully updated.
 
-all: Integration/server.c Verifier/verifier.c
+all: integration/server.c verifier/verifier.c
 #  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
@@ -303,22 +325,22 @@ all: Integration/server.c Verifier/verifier.c
 # automatic
 # * := 
 # automatic
-# + := Integration/server.c Verifier/verifier.c
+# + := integration/server.c verifier/verifier.c
 # automatic
 # | := 
 # automatic
-# < := Integration/server.c
+# < := integration/server.c
 # automatic
-# ^ := Integration/server.c Verifier/verifier.c
+# ^ := integration/server.c verifier/verifier.c
 # automatic
-# ? := Integration/server.c Verifier/verifier.c
+# ? := integration/server.c verifier/verifier.c
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/16=6%
 #  recipe to execute (from 'Makefile', line 11):
 	$(CC) $(CFLAGS) $(CPPFLAGS) $^ $(LDLIBS)  
 
 # Not a target:
-Integration/server.c:
+integration/server.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-07-06 01:28:45.357749132
 #  File has been updated.
@@ -333,7 +355,7 @@ Integration/server.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-05 22:42:31.648576228
+#  Last modified 2022-07-07 05:47:28.221037236
 #  File has been updated.
 #  Successfully updated.
 
@@ -357,13 +379,14 @@ clean:
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
+ 
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 230 B / avg = 10 B
-# current buf: size = 8162 B / used = 230 B / count = 21 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 271 B / avg = 10 B
+# current buf: size = 8162 B / used = 271 B / count = 25 / avg = 10 B
 
-# strcache performance: lookups = 29 / hit rate = 27%
+# strcache performance: lookups = 33 / hit rate = 24%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=1/29=3%
-# Finished Make data base on Wed Jul  6 10:42:52 2022
+# Load=25/8192=0%, Rehash=0, Collisions=1/33=3%
+# Finished Make data base on Thu Jul  7 05:48:09 2022
 
  

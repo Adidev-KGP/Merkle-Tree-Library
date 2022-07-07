@@ -10,5 +10,9 @@
         ".",
         "-p",
         "test_*.py"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "verifier.h": "c"
+    }
 }

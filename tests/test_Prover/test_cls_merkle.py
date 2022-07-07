@@ -1,9 +1,9 @@
 from typing import List
-import math ,colors ,pytest
-
+import math, pytest
 from pyparsing import Char
-from Prover.merkle import MerkleTree ,combine_hashes , largest_power_of_2_less_than
 
+from prover.merkle import MerkleTree ,combine_hashes , largest_power_of_2_less_than
+import colors
 # The list variable transactions contains some Bitcoin transactions
 transactions=[
     b"0f228b6937809585b1d6608d8602bbf81d69d2df1c8d454083ac1197eb3699c8 -> 1AmATEZYYg8dnwBLBJGNyP4EihDzrzJDzK 0.9 BTC",

@@ -1,5 +1,5 @@
 # pylint: disable=line-too-long
-from Prover.merkle import MerkleTree, Node, make_tree
+from prover.merkle import MerkleTree, Node, make_tree
 import pytest
 
 #variable LEAF_ELEMENTS stores the elements that are leaves in the Merkle Tree

@@ -8,12 +8,11 @@
 #include <arpa/inet.h>
 #include "server.h"
 #include <math.h>
-#include "../Verifier/verifier.h"
+#include "../verifier/verifier.h"
 
 #define byte unsigned char
 
 #define PORT 4455
-
 
 
 void parse_verify(char buffer[], int *len, int *ind, int *proof_size, byte root[], byte leaf[], byte proof[][32]){
@@ -30,7 +29,7 @@ void parse_verify(char buffer[], int *len, int *ind, int *proof_size, byte root[
   int *length;
   length=len;
   *length=0;
-  for(int i=0;i<strlen(extracted_data[0]);i++){
+  for(int i=1;i<strlen(extracted_data[0]);i++){
       *length+=pow(10,strlen(extracted_data[0])-1-i)*(extracted_data[0][i]-'0');
   }
 
@@ -75,7 +74,7 @@ void parse_set(char buffer[], int *len, int *ind, int *proof_size, byte old_root
     int *length;
     length=len;
     *length=0;
-    for(int i=0;i<strlen(extracted_data[0]);i++){
+    for(int i=1;i<strlen(extracted_data[0]);i++){
         *length+=pow(10,strlen(extracted_data[0])-1-i)*(extracted_data[0][i]-'0');
     }
 
@@ -141,11 +140,34 @@ void server() {
     recv(client_fd, buffer, buffer_size, 0);
     
     printf("[CLIENT] %s\n", buffer);
+    if(buffer[0]=='g'){
+      int len;int ind;int prf_s;byte root[32];byte leaf[32];byte proof[260][32];
+      parse_verify(buffer,&len,&ind,&prf_s,root,leaf,proof);
+
+      int n= verify_merkle_proof(root, len, ind, leaf, proof, prf_s);
+      if(n==1)printf("Verified! The data sent is correct\n");
+      else printf("False information given\n");
+    }else if(buffer[0]=='s'){
+      
+      int len;int ind;int prf_s;
+      byte old_root[32];byte old_leaf[32];
+      byte new_root[32];byte new_leaf[32];
+      byte proof[260][32];
+
+      parse_set(buffer, &len, &ind, &prf_s, old_root,
+                old_leaf,new_root,new_leaf,proof);
+      
+      int prev=verify_merkle_proof(old_root, len, ind, old_leaf, proof, prf_s);
+      int new=verify_merkle_proof(new_root, len, ind, new_leaf, proof, prf_s);
+      if(prev&&new)printf("Verified! The data sent is correct\n");
+      else printf("False information given\n");
+
+    }
     
     fgets(buffer,buffer_size,stdin);
     
 
-    if(buffer[0]=='v'){
+    if(buffer[0]=='g'){
       //printf("ok!");
       
       send(client_fd, buffer, strlen(buffer), 0);
@@ -155,28 +177,10 @@ void server() {
 
       int len;int ind;int prf_s;byte root[32];byte leaf[32];byte proof[260][32];
       parse_verify(buffer,&len,&ind,&prf_s,root,leaf,proof);
-      /*printf("length : %d\n",len);
-      printf("index : %d\n",ind);
-      printf("proof size : %d\n",prf_s);
-      for(int i=0;i<32;i++){
-        printf("root : %d ",root[i]);
-      }
-      for(int i=0;i<32;i++){
-        printf("leaf : %d ",leaf[i]);
-      }
-
-      for(int i=0;i<prf_s;i++){
-        for(int j=0;j<32;j++){
-          printf("proof : %d ",proof[i][j]);
-        }printf("\n");
-      }*/
 
       int n= verify_merkle_proof(root, len, ind, leaf, proof, prf_s);
       if(n==1)printf("Verified! The data sent is correct\n");
       else printf("False information given\n");
-      //printf("%p",&buffer);
-      //parse_verify(buffer);
-
 
       fgets(buffer,buffer_size,stdin);
       if(buffer[0]=='B'){

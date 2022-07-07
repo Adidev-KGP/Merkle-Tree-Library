@@ -1,6 +1,6 @@
 import colors, pytest
 
-from Prover.merkle import floor_lg, ceil_lg, is_power_of_2, largest_power_of_2_less_than
+from prover.merkle import floor_lg, ceil_lg, is_power_of_2, largest_power_of_2_less_than
 
 #list variable no stores some numbers on which the functions will be tested
 no = [23, 32, 44, 63, 72, 76, 80]

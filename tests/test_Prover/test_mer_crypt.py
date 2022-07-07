@@ -1,7 +1,7 @@
 # pylint: disable=line-too-long
 import pytest
 import colors
-from Prover.merkle import sha256, element_hash, combine_hashes
+from prover.merkle import sha256, element_hash, combine_hashes
 
 #variable ELEMENTS stores the elements that are leaves in the Merkle Tree
 ELEMENTS = [b'merkle', b'tree', b'library',
