@@ -11,7 +11,7 @@ Merkle trees can easily represent static arrays/lists. Updatable lists are also 
 So basically if the HWW is to get some data from the client it can receive it but to be sure that the correct data has been served to it a merkle proof is sent and using the hash of data and merkle proof HWW can verify if the data it has been sent is correct or not.
 
 If you don't know much about Merkle Trees and Merkle Proofs you can read this  
-### [article]("https://decentralizedthoughts.github.io/2020-12-22-what-is-a-merkle-tree/") .
+### [article](https://decentralizedthoughts.github.io/2020-12-22-what-is-a-merkle-tree/) .
 
 # Aim of the Project
 
@@ -43,9 +43,9 @@ This project has 2 separate libraries:
 - Integration of C library (integration/server.c)
 
 ## READMEs
-- #### [prover/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/prover/README.md")
-- #### [verifier/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/verifier/README.md")
-- #### [integration/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/integration/README.md")
+- #### [prover/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/prover/README.md)
+- #### [verifier/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/verifier/README.md)
+- #### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/integration/README.md)
 
 ## Building and running the Integration
 
@@ -130,13 +130,13 @@ set 4 github string
 set 7 football string
 ```
 To know about how data is sent to verifier and other in-depth things refer to  
-#### [integration/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/integration/README.md").
+#### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/integration/README.md).
 
 ## Building and running unit-tests
 
 You will find the unit tests for Prover and Verifier in the 
-### [tests/test_Prover]("https://github.com/Adidev-KGP/Merkle-Tree_Library/blob/main/tests/test_Prover") and 
-### [tests/test_Verifier]("https://github.com/Adidev-KGP/Merkle-Tree_Library/blob/main/tests/test_Verifier") respectively. 
+### [tests/test_Prover](https://github.com/Adidev-KGP/Merkle-Tree_Library/blob/main/tests/test_Prover) and 
+### [tests/test_Verifier](https://github.com/Adidev-KGP/Merkle-Tree_Library/blob/main/tests/test_Verifier) respectively. 
 
 ### Running the Prover's unit-tests:
 
