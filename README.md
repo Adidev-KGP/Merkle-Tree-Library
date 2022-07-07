@@ -43,8 +43,8 @@ This project has 2 separate libraries:
 - Integration of C library (integration/server.c)
 
 ## READMEs
-- #### [prover/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/prover/README.md)
-- #### [verifier/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/verifier/README.md)
+- #### [prover/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/prover)
+- #### [verifier/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/verifier)
 - #### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/integration)
 
 ## Building and running the Integration
@@ -130,13 +130,13 @@ set 4 github string
 set 7 football string
 ```
 To know about how data is sent to verifier and other in-depth things refer to  
-#### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/integration/README.md).
+#### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/integration/README.md).
 
 ## Building and running unit-tests
 
 You will find the unit tests for Prover and Verifier in the 
-### [tests/test_Prover](https://github.com/Adidev-KGP/Merkle-Tree_Library/blob/main/tests/test_Prover) and 
-### [tests/test_Verifier](https://github.com/Adidev-KGP/Merkle-Tree_Library/blob/main/tests/test_Verifier) respectively. 
+### [tests/test_Prover](https://github.com/Adidev-KGP/Merkle-Tree_Library/tree/main/tests/test_Prover) and 
+### [tests/test_Verifier](https://github.com/Adidev-KGP/Merkle-Tree_Library/tree/main/tests/test_Verifier) respectively. 
 
 ### Running the Prover's unit-tests:
 
