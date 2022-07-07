@@ -10,7 +10,8 @@ Merkle trees can easily represent static arrays/lists. Updatable lists are also 
 
 So basically if the HWW is to get some data from the client it can receive it but to be sure that the correct data has been served to it a merkle proof is sent and using the hash of data and merkle proof HWW can verify if the data it has been sent is correct or not.
 
-If you don't know much about Merkle Trees and Merkle Proofs you can read this  [article]("https://decentralizedthoughts.github.io/2020-12-22-what-is-a-merkle-tree/") .
+If you don't know much about Merkle Trees and Merkle Proofs you can read this  
+### [article]("https://decentralizedthoughts.github.io/2020-12-22-what-is-a-merkle-tree/") .
 
 # Aim of the Project
 
@@ -42,9 +43,9 @@ This project has 2 separate libraries:
 - Integration of C library (integration/server.c)
 
 ## READMEs
-- [prover/README.md]("prover/README.md")
-- [verifier/README.md]("verifier/README.md")
-- [integration/README.md]("integration/README.md")
+- #### [prover/README.md]("https://github.com/Adidev-KGP/Merkle-Tree_Library/prover/README.md")
+- #### [verifier/README.md]("https://github.com/Adidev-KGP/Merkle-Tree_Library/verifier/README.md")
+- #### [integration/README.md]("https://github.com/Adidev-KGP/Merkle-Tree_Library/integration/README.md")
 
 ## Building and running the Integration
 
@@ -132,7 +133,9 @@ To know about how data is sent to verifier and other in-depth things refer to  [
 
 ## Building and running unit-tests
 
-You will find the unit tests for Prover and Verifier in the [tests/test_Prover]("tests/test_Prover") and [tests/test_Verifier]("tests/test_Verifier") respectively. 
+You will find the unit tests for Prover and Verifier in the 
+### [tests/test_Prover]("https://github.com/Adidev-KGP/Merkle-Tree_Library/tests/test_Prover") and 
+### [tests/test_Verifier]("https://github.com/Adidev-KGP/Merkle-Tree_Library/tests/test_Verifier") respectively. 
 
 ### Running the Prover's unit-tests:
 
