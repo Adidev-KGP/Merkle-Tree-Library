@@ -1,55 +1,64 @@
+# pylint: disable=missing-module-docstring
 from typing import List, Iterable
 import hashlib
 
 NIL = bytes([0] * 32)
 
 
-def floor_lg(n: int) -> int:
+def floor_lg(_n: int) -> int:
     """Return floor(log_2(n)) for a positive integer `n`"""
 
-    assert n > 0
+    assert _n > 0
 
-    r = 0
-    t = 1
-    while 2 * t <= n:
-        t = 2 * t
-        r = r + 1
-    return r
+    _r = 0
+    _t = 1
+    while 2 * _t <= _n:
+        _t = 2 * _t
+        _r = _r + 1
+    return _r
 
 
-def ceil_lg(n: int) -> int:
+def ceil_lg(_n: int) -> int:
     """Return ceiling(log_2(n)) for a positive integer `n`."""
 
-    assert n > 0
+    assert _n > 0
 
-    r = 0
-    t = 1
-    while t < n:
-        t = 2 * t
-        r = r + 1
-    return r
-
-
-def is_power_of_2(n: int) -> bool:
-    """For a positive integer `n`, returns `True` is `n` is a perfect power of 2, `False` otherwise."""
-
-    assert n >= 1
-    
-    return n &(n-1) == 0
+    _r = 0
+    _t = 1
+    while _t < _n:
+        _t = 2 * _t
+        _r = _r + 1
+    return _r
 
 
-def largest_power_of_2_less_than(n: int) -> int:
-    """For an integer `n` which is at least 2, returns the largest exact power of 2 that is strictly less than `n`."""
+def is_power_of_2(_n: int) -> bool:
+    """
+    For a positive integer `n`, returns `True` if `n` is a perfect power of 2,
+    `False` otherwise.
+    """
 
-    assert n > 1
+    assert _n >= 1
 
-    if is_power_of_2(n):
-        return n // 2
+    return _n &(_n-1) == 0
+
+
+def largest_power_of_2_less_than(_n: int) -> int:
+    """
+    For an integer `n` which is at least 2, 
+    returns the largest exact power of 2 that is strictly less than `n`.
+    """
+
+    assert _n > 1
+
+    if is_power_of_2(_n):
+        return _n // 2
     else:
-        return 1 << floor_lg(n)
+        return 1 << floor_lg(_n)
     
-def sha256(s: bytes) -> bytes:
-    return hashlib.new('sha256', s).digest()
+def sha256(_s: bytes) -> bytes:
+    """Returns the sha256 hash as a byte string"""
+
+    return hashlib.new('sha256', _s).digest()
 
 
 def element_hash(element_preimage: bytes) -> bytes:
@@ -65,9 +74,20 @@ def combine_hashes(left: bytes, right: bytes) -> bytes:
     return sha256(b'\x01' + left + right)
 
 
-# root is the only node with parent == None
-# leaves have left == right == None
 class Node:
+
+    '''
+    Class Node maintains a node of Merkle Tree.
+    Each Node has the following properties:
+    1)the Node on its left OR its left nieghbour
+    2)the Node on its right OR its right neighbour
+    3)the value stored in the Node
+    4)parent of the Node
+
+    root is the only node with parent == None
+    leaves have left == right == None
+    '''
+
     def __init__(self, left, right, parent, value: bytes):
         self.left = left
         self.right = right
@@ -92,7 +112,8 @@ class Node:
 
 
 def make_tree(leaves: List[Node], begin: int, size: int) -> Node:
-    """Given a list of nodes, builds the left-complete Merkle tree on top of it.
+    """
+    Given a list of nodes, builds the left-complete Merkle tree on top of it.
     The nodes in `leaves` are modified by setting their `parent` field appropriately.
     It returns the root of the newly built tree.
     """
@@ -114,18 +135,21 @@ def make_tree(leaves: List[Node], begin: int, size: int) -> Node:
 
 class MerkleTree:
     """
-    Maintains a dynamic vector of values and the Merkle tree built on top of it. The elements of the vector are stored
-    as the leaves of a binary tree. It is possible to add a new element to the vector, or change an existing element;
-    the hashes in the Merkle tree will be recomputed after each operation in O(log n) time, for a vector with n
-    elements.
+    Maintains a dynamic vector of values and the Merkle tree built on top of it.
+    The elements of the vector are stored as the leaves of a binary tree.
+    It is possible to add a new element to the vector, or change an existing element;
+    the hashes in the Merkle tree will be recomputed after each operation in O(log n) time,
+    for a vector with n elements.
+
     The value of each internal node is the hash of the concatenation of:
     - a single byte 0x01;
     - the values of the left child;
     - the value of the right child.
+
     The binary tree has the following properties (assuming the vector contains n leaves):
     - There are always n - 1 internal nodes; all the internal nodes have exactly two children.
-    - If a subtree has n > 1 leaves, then the left subchild is a complete subtree with p leaves, where p is the largest
-      power of 2 smaller than n.
+    - If a subtree has n > 1 leaves, then the left subchild is a complete subtree with p leaves,
+      where p is the largest power of 2 smaller than n.
     """
 
     def __init__(self, elements: Iterable[bytes] = []):
@@ -151,15 +175,15 @@ class MerkleTree:
         """Return an identical copy of this Merkle tree."""
         return MerkleTree([leaf.value for leaf in self.leaves])
 
-    def add(self, x: bytes) -> None:
+    def add(self, _x: bytes) -> None:
         """Add an element as new leaf, and recompute the tree accordingly. Cost O(log n)."""
-        
-        x = element_hash(x)
 
-        if len(x) != 32:
+        _x = element_hash(_x)
+
+        if len(_x) != 32:
             raise ValueError("Inserted elements must be exactly 32 bytes long")
 
-        new_leaf = Node(None, None, None, x)
+        new_leaf = Node(None, None, None, _x)
         self.leaves.append(new_leaf)
         if len(self.leaves) == 1:
             self.root_node = new_leaf
@@ -193,36 +217,36 @@ class MerkleTree:
         cur_root.parent = new_node
         new_leaf.parent = new_node
 
-        self.fix_up(new_node)
+        self._fix_up(new_node)
 
-    def set(self, index: int, x: bytes) -> None:
+    def set(self, index: int, _x: bytes) -> None:
         """
         Set the value of the leaf at position `index` to `x`, recomputing the tree accordingly.
         If `index` equals the current number of leaves, then it is equivalent to `add(x)`.
         Cost: Worst case O(log n).
         """
 
-        x = element_hash(x)
-        
+        _x = element_hash(_x)
+
         assert 0 <= index <= len(self.leaves)
 
         if not (0 <= index <= len(self.leaves)):
             raise ValueError(
                 "The index must be at least 0, and at most the current number of leaves.")
-            
+
         proof_of_correct_update = []
         proof_of_correct_update.append(self.root_node.value)
         proof_of_correct_update.append(self.get(index))
 
-        if len(x) != 32:
+        if len(_x) != 32:
             raise ValueError("Inserted elements must be exactly 32 bytes long.")
 
         if index == len(self.leaves):
-            self.add(x)
+            self.add(_x)
         else:
-            self.leaves[index].value = x
-            self.fix_up(self.leaves[index].parent)
-            
+            self.leaves[index].value = _x
+            self._fix_up(self.leaves[index].parent)
+
         proof_of_correct_update.append(self.root_node.value)
 
         proof = self.prove_leaf(index)
@@ -232,7 +256,7 @@ class MerkleTree:
 
         return proof_of_correct_update
 
-    def fix_up(self, node: Node):
+    def _fix_up(self, node: Node):
         while node is not None:
             node.recompute_value()
             node = node.parent
@@ -241,18 +265,21 @@ class MerkleTree:
         """Return the value of the leaf with index `i`, where 0 <= i < len(self)."""
         return self.leaves[i].value
 
-    def leaf_index(self, x: bytes) -> int:
+    def leaf_index(self, _x: bytes) -> int:
         """Return the index of the leaf with hash `x`. Raises `ValueError` if not found."""
-        x = element_hash(x)
+        _x = element_hash(_x)
         idx = 0
         while idx < len(self):
-            if self.leaves[idx].value == x:
+            if self.leaves[idx].value == _x:
                 return idx
             idx += 1
         raise ValueError("Leaf not found")
 
     def prove_leaf(self, index: int) -> List[bytes]:
-        """Produce the Merkle proof of membership for the leaf with the given index where 0 <= index < len(self)."""
+        """
+        Produce the Merkle proof of membership for the leaf with
+        the given index where 0 <= index < len(self).
+        """
         node = self.leaves[index]
         proof = []
         while node.parent is not None:

@@ -1,82 +1,90 @@
+# pylint: disable=missing-module-docstring
 from __future__ import print_function
-from data import transactions
-from email import message
-from re import T
 import socket
 import sys
-
-from urllib3 import proxy_from_url
 sys.path.append("")
 
-from prover.merkle import MerkleTree ,element_hash
+from prover.merkle import MerkleTree, element_hash
+from data import transactions
 
-obj = MerkleTree(transactions)
+#object of Class MerkleTree is created
+OBJ = MerkleTree(transactions)
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = ('localhost', 4455)
+CLIENT = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+SERVER_ADDRESS = ('localhost', 4455)
 
-client.connect(server_address)
-print("Connecting to port: ", server_address)
-message = input()
+CLIENT.connect(SERVER_ADDRESS)
+print("Connecting to port: ", SERVER_ADDRESS)
+MESSAGE = input()
 
-client.sendall(message.encode())
+CLIENT.sendall(MESSAGE.encode())
 
-while message!="end":
-    data = client.recv(1000).decode()
+while MESSAGE != "end":
+    DATA = CLIENT.recv(1000).decode()
+    DATA = DATA.strip()
 
-    if data=="end":
+    if DATA == "end":
         print("[DSICONNECTED] Connection closed")
         break
 
-    print("[Server]",data)
+    print("[Server]", DATA)
 
-    if data.split(" ")[0]=="get":
-        leaf=obj.get(int(data.split(" ")[1]))
-        proof = obj.prove_leaf(int(data.split(" ")[1]))
-        message = "v"
-        message = message+str(obj.__len__())+" "
-        message = message+data.split(" ")[1][0]+" "
-        message = message+str(len(proof))+" "
-        message = message+obj.root.hex()+" "
-        message = message+leaf.hex()+" "
+    #this if statement deals with intsructions from the verifier starting with get
+    #data sent to verifier is in the following sequence
+    #(length, index, proof_size, root_hash, leaf_hash, proof)
+    if DATA.split(" ")[0] == "get":
+        leaf = OBJ.get(int(DATA.split(" ")[1]))
+        proof = OBJ.prove_leaf(int(DATA.split(" ")[1]))
+        MESSAGE = "g"
+        MESSAGE = MESSAGE+str(OBJ.__len__())+" "
+        MESSAGE = MESSAGE+DATA.split(" ")[1]+" "
+        MESSAGE = MESSAGE+str(len(proof))+" "
+        MESSAGE = MESSAGE+OBJ.root.hex()+" "
+        MESSAGE = MESSAGE+leaf.hex()+" "
+
         for i in proof:
-            message = message+i.hex()+" "
-        message.strip()
-        client.sendall(message.encode())
+            MESSAGE = MESSAGE+i.hex()+" "
+        MESSAGE.strip()
 
-    elif data.split(" ")[0]=="set":
+        print(MESSAGE)
 
-        index = int(data.split(" ")[1])
-        data_type = data.split(" ")[3]
-        value = data.split(" ")[2]
-        if data_type == "string":
-            value=bytes(value)
-        elif data_type == "int":
-            value = int(value)
-        elif data_type == "double":
-            value = float(value)
-        value = value.encode()
+        CLIENT.sendall(MESSAGE.encode())
 
-        proof = obj.prove_leaf(3)
-       
-        proof_update = obj.set(index, value)
-        message =  "s"
-        message = message+str(obj.__len__())+" "
-        message = message+data.split(" ")[1][0]+" "
-        message = message+str(len(proof))+" "
+    #this elif statement deals with intsructions from the verifier starting with set
+    #data sent to verifier is in the following sequence
+    #(length, index, proof_size, old_root_hash, old_leaf_hash, new_root_hash, new_leaf_hash, proof)
+    elif DATA.split(" ")[0] == "set":
+        index = int(DATA.split(" ")[1])
+        DATA_type = DATA.split(" ")[3]
+        VALUE = DATA.split(" ")[2]
 
-        for i in range(0,3):
-            message = message+(proof_update[i]).hex()+" "
-       
-        message = message+element_hash(value).hex()+" "
+        if DATA_type == "string":
+            VALUE = VALUE.encode()
+        elif DATA_type == "int":
+            VALUE = int(VALUE)
+            VALUE = VALUE.to_bytes(20, 'big')
+        elif DATA_type == "double":
+            VALUE = float(VALUE)
+
+        proof = OBJ.prove_leaf(index)
+
+        proof_update = OBJ.set(index, VALUE)
+        MESSAGE = "s"
+        MESSAGE = MESSAGE+str(OBJ.__len__())+" "
+        MESSAGE = MESSAGE+DATA.split(" ")[1]+" "
+        MESSAGE = MESSAGE+str(len(proof))+" "
+
+        for i in range(0, 3):
+            MESSAGE = MESSAGE+(proof_update[i]).hex()+" "
+
+        MESSAGE = MESSAGE+element_hash(VALUE).hex()+" "
         for i in proof_update[3:]:
-            message = message+i.hex()+" "
-        message.strip()
-        client.sendall(message.encode())
-       
+            MESSAGE = MESSAGE+i.hex()+" "
+        MESSAGE.strip()
+        CLIENT.sendall(MESSAGE.encode())
 
     else:
-        message = input()
-        client.sendall(message.encode())
+        MESSAGE = input()
+        CLIENT.sendall(MESSAGE.encode())
        
-client.close()
+CLIENT.close()

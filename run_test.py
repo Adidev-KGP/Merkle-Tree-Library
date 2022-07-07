@@ -13,18 +13,18 @@ class Runner:
       1)load_test_files() --> this methods checks for file
                             names that start with test
                             under a certain given directory.
-               
-      2)load_tests() --> this method returns the files satrting
+ 
+      2)load_tests() --> this method returns the files starting
                         with test under the given directory
 
       3)load_module() --> this method loads the modules specific
                           to tests.
 
-      4)run_single_file() --> this methods runs single file starting
-                              with test
+      4)run_single_file() --> this methods runs single file whoose
+                              name starts with test.
 
       5)run() --> this method runs all the files starting with test
-                  with the iteration of run_single_file() method
+                  with the iteration of run_single_file() method.
 
     '''
 
@@ -83,7 +83,7 @@ class Runner:
         '''
           we have to turn this string with file path to the file
           into a python module that is considered a real
-          code and that can be  executed
+          code and that can be  executed.
         '''
 
         for test_file in self.test_files:

@@ -1,6 +1,6 @@
 #include "test_ver_merkle_proof.h"
 #include "../../verifier/verifier.h"
-/* Compile : gcc ./test_Verifier/test_ver_merkle_proof.c ./verifier/verifier.c -lcrypto -w */
+/* Compile : gcc ./tests/test_Verifier/test_ver_merkle_proof.c ./verifier/verifier.c -lcrypto -w */
 
 
 int len = 5;

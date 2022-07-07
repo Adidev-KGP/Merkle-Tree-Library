@@ -1,11 +1,13 @@
+# pylint: disable=missing-module-docstring
 from typing import List
-import math, pytest
+import math
+import pytest
 from pyparsing import Char
 
-from prover.merkle import MerkleTree ,combine_hashes , largest_power_of_2_less_than
+from prover.merkle import MerkleTree, combine_hashes, largest_power_of_2_less_than
 import colors
-# The list variable transactions contains some Bitcoin transactions
-transactions=[
+# The list variable TRANSACTIONS contains some Bitcoin TRANSACTIONS
+TRANSACTIONS = [
     b"0f228b6937809585b1d6608d8602bbf81d69d2df1c8d454083ac1197eb3699c8 -> 1AmATEZYYg8dnwBLBJGNyP4EihDzrzJDzK 0.9 BTC",
     b"0f228b6937809585b1d6608d8602bbf81d69d2df1c8d454083ac1197eb3699c8 -> 13fjLwsAJC7KsH3wPhA3vbLLcSBfBMb6r5 0.1 BTC",
     b"cdb64c957b14fa3495ad97f38431bb26d2ae948bb6420bc9a71fc3c39f3563c1 -> 1FkdushTJEDJHXatTssvzHFfGvBdBH2zdj 0.45 BTC",
@@ -33,11 +35,12 @@ transactions=[
     b"935ghtf266f9e712fa16343bf4019d2c012fa1f8ce71fea4b4fed51845d69f2a1 -> 1J8Swxzfs7FoXkhvSyKrmgDgemLFr4iKNR 1.38 BTC",
 ]
 
-#object of MerkleTree class has been created as obj
-obj = MerkleTree(transactions)
+#object of MerkleTree class has been created as OBJ
+OBJ = MerkleTree(TRANSACTIONS)
 
-#root stores the current root hash of the Merkle Tree whoose leaves are in list variable transactions
-root = obj.root
+#root stores the current root hash of the Merkle Tree whoose leaves
+#are in list variable TRANSACTIONS
+ROOT = OBJ.root
 
 """
 Methods to test from MerkleTree class:
@@ -47,39 +50,39 @@ Methods to test from MerkleTree class:
 """
 
 
-def verify_merkle_proof_leaves_power_of_2(index: int ,leaf: bytes ,proof: List[bytes]):
+def verify_merkle_proof_leaves_power_of_2(index: int, leaf: bytes, proof: List[bytes]):
 
     """
-    Given a Merkle Tree having number leaves equal to some power of 2, 
-    verify_merkle_proof_leaves_power_of_2() computes the root hash of such 
+    Given a Merkle Tree having number leaves equal to some power of 2,
+    verify_merkle_proof_leaves_power_of_2() computes the root hash of such
     a Merkle Tree from the Merkle Proof and the leaf hash and returns
     the final root hash it calculated.
-    Time complexity : O(log2(N)) where N is the number of leaves
-    
+    Time complexity : O(log2(N)) where N is the number of leaves.
     """
 
-    len=obj.__len__()
+    _len = OBJ.__len__()
 
-    index+=1
+    index += 1
 
-    if index != len:
-            for i in proof:
-                if index % 2 ==0:
-                    ver_root = combine_hashes(i,leaf)
-                    leaf = ver_root
-                else:
-                    ver_root = combine_hashes(leaf,i)
-                    leaf = ver_root
-                index = math.ceil(index/2)
-    elif index == len:
+    if index != _len:
         for i in proof:
-            ver_root = combine_hashes(i,leaf)
+            if index % 2 == 0:
+                ver_root = combine_hashes(i, leaf)
+                leaf = ver_root
+            else:
+                ver_root = combine_hashes(leaf, i)
+                leaf = ver_root
+            index = math.ceil(index/2)
+
+    elif index == _len:
+        for i in proof:
+            ver_root = combine_hashes(i, leaf)
             leaf = ver_root
     return ver_root
 
 
-def ver_merkle_right_branch(index: int ,proof: List[bytes] ,leaf: bytes ,dir: Char):
-    
+def ver_merkle_right_branch(index: int, proof: List[bytes], leaf: bytes, dir: Char):
+
     """
     Given a Merkle Tree which has number of leaves not equal to some power of 2,
     ver_merkle_right_branch() computes the root hash of such a Merkle Tree
@@ -97,28 +100,28 @@ def ver_merkle_right_branch(index: int ,proof: List[bytes] ,leaf: bytes ,dir: Ch
     1) The Merkle Tree has number of leaves not equal to some power of 2
     2) The leaf using which root hash is computed is in the right branch
        of the Merkle Tree.
-    
+
     """
 
-    
-    if(index == len(proof)):
-        if(leaf == obj.root):
-            return obj.root
+
+    if index == len(proof):
+        if leaf == OBJ.root:
+            return OBJ.root
         else:
             return None
-    
-    if(dir =='l'):
-        leaf=  combine_hashes(leaf, proof[index])
-    elif(dir == 'r'):
+
+    if dir == 'l':
+        leaf = combine_hashes(leaf, proof[index])
+    elif dir == 'r':
         leaf = combine_hashes(proof[index], leaf)
-    
-    x= ver_merkle_right_branch(index+1 ,proof , leaf , 'l')
-    if(x == obj.root):
-        return x
-    
-    y = ver_merkle_right_branch(index+1 , proof , leaf , 'r')
-    if(y == obj.root):
-        return y
+
+    _x = ver_merkle_right_branch(index+1, proof, leaf, 'l')
+    if _x == OBJ.root:
+        return _x
+
+    _y = ver_merkle_right_branch(index+1, proof, leaf, 'r')
+    if _y == OBJ.root:
+        return _y
 
 
 def verify_merkle_proof(index: int, leaf: bytes, proof: List[bytes]):
@@ -135,10 +138,10 @@ def verify_merkle_proof(index: int, leaf: bytes, proof: List[bytes]):
 
     """
 
-    #variable left stores the the largest power of 2 less than number of leaves 
-    left =  largest_power_of_2_less_than(obj.__len__())
+    #variable left stores the the largest power of 2 less than number of leaves
+    left =  largest_power_of_2_less_than(OBJ.__len__())
 
-    if left*2 == obj.__len__():
+    if left*2 == OBJ.__len__():
         """executes if the number of leaves is a power of 2"""
 
         return verify_merkle_proof_leaves_power_of_2(index, leaf, proof)
@@ -147,15 +150,15 @@ def verify_merkle_proof(index: int, leaf: bytes, proof: List[bytes]):
         executes if the number of leaves is not a power of 2 
         and the leaf is in the right branch
         """
-        if index +1 <=left:
+        if index +1 <= left:
             return verify_merkle_proof_leaves_power_of_2(index, leaf, proof)
         else:
-            if index+1 == obj.__len__():
-                return ver_merkle_right_branch(0, proof,leaf, 'r')
-            
-            if (index+1) %2 == 0 and index+1 != obj.__len__():
+            if index+1 == OBJ.__len__():
                 return ver_merkle_right_branch(0, proof, leaf, 'r')
-            elif (index+1) %2 != 0 and index+1 != obj.__len__():
+
+            if (index+1) %2 == 0 and index+1 != OBJ.__len__():
+                return ver_merkle_right_branch(0, proof, leaf, 'r')
+            elif (index+1) %2 != 0 and index+1 != OBJ.__len__():
                 return ver_merkle_right_branch(0, proof, leaf, 'l')
 
 
@@ -171,10 +174,10 @@ def test_set():
 
     #Setting transaction of leaf 3 as set_transaction
     set_transaction = b"2c487160381f60116ee86ac042c9d6e74cc525cf9fba0b89a1b477fe85d93817 -> 1MkCDCzHpBsYQivp8MxjY5AkTGG1f2baoe 6.26708335 BTC"
-    proof_update = obj.set(3, set_transaction)
+    proof_update = OBJ.set(3, set_transaction)
 
     new_root = proof_update[2]
-    new_leaf = obj.get(3)
+    new_leaf = OBJ.get(3)
 
     prev_root = proof_update[0]
     prev_leaf = proof_update[1]
@@ -182,30 +185,30 @@ def test_set():
     res = True
 
     if (new_root == verify_merkle_proof(3, new_leaf, proof_update[3:]) and
-       prev_root == verify_merkle_proof(3, prev_leaf, proof_update[3:])):
+            prev_root == verify_merkle_proof(3, prev_leaf, proof_update[3:])):
 
-       print("test-passed")
+        print("test-passed")
 
     else:
         res = False
         print("test-failed")
-    
+
     assert res is True
 
 @pytest.mark.merkle_proof
 def test_merkle_proofs():
     """
-    test_merkle_proofs() is the function to test the 
-    correctness of the Merkle Proof produced by the 
+    test_merkle_proofs() is the function to test the
+    correctness of the Merkle Proof produced by the
     prove_leaf method of class MerkleTree
 
     """
 
     res = True
-     
-    for i in range(0, obj.__len__()):
-        
-        if(root == verify_merkle_proof(i, obj.get(i), obj.prove_leaf(i))):
+
+    for i in range(0, OBJ.__len__()):
+
+        if ROOT == verify_merkle_proof(i, OBJ.get(i), OBJ.prove_leaf(i)):
             print(f"test no. {i+1} passed")
         else:
             res = False

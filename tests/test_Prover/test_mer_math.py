@@ -1,9 +1,10 @@
+# pylint: disable=missing-module-docstring
 import colors, pytest
 
 from prover.merkle import floor_lg, ceil_lg, is_power_of_2, largest_power_of_2_less_than
 
-#list variable no stores some numbers on which the functions will be tested
-no = [23, 32, 44, 63, 72, 76, 80]
+#list variable NO stores some numbers on which the functions will be tested
+NO = [23, 32, 44, 63, 72, 76, 80]
 
 @pytest.mark.floor_lg
 def test_floor_lg():
@@ -14,17 +15,17 @@ def test_floor_lg():
     log2(n).
     """
 
-    lis = [4, 5, 5, 5, 6, 6, 6]
-    c = 0
+    _LIS = [4, 5, 5, 5, 6, 6, 6]
+    _c = 0
     res = True
 
-    for i in no:
-        if floor_lg(i) == lis[c]:
-            print(f"test no. {c+1} passed")
+    for i in NO:
+        if floor_lg(i) == _LIS[_c]:
+            print(f"test no. {_c+1} passed")
         else:
-            print(f"test no. {c+1} {colors.RED}failed{colors.RESET}")
+            print(f"test no. {_c+1} {colors.RED}failed{colors.RESET}")
             res = False
-        c+=1
+        _c += 1
     assert res is True
 
 @pytest.mark.ceil_lg
@@ -37,17 +38,17 @@ def test_ceil_lg():
 
     """
 
-    lis = [5, 5, 6, 6, 7, 7, 7]
-    c = 0
+    _LIS = [5, 5, 6, 6, 7, 7, 7]
+    _c = 0
     res = True
 
-    for i in no:
-        if ceil_lg(i) == lis[c]:    
-            print(f"test no. {c+1} passed")
+    for i in NO:
+        if ceil_lg(i) == _LIS[_c]:    
+            print(f"test no. {_c+1} passed")
         else:
-            print(f"test no. {c+1} {colors.RED}failed{colors.RESET}")
+            print(f"test no. {_c+1} {colors.RED}failed{colors.RESET}")
             res = False
-        c+=1
+        _c += 1
     assert res is True
 
 @pytest.mark.power_of_2
@@ -60,17 +61,17 @@ def test_is_power_of_2():
 
     """
 
-    c = 0
+    _c = 0
     res = True
 
-    nos = [2, 4, 32, 16, 128, 1024, 512]        
-    for i in nos:
+    _NOS = [2, 4, 32, 16, 128, 1024, 512]
+    for i in _NOS:
         if is_power_of_2(i):
-            print(f"test no. {c+1} passed")
+            print(f"test no. {_c+1} passed")
         else:
-            print(f"test no. {c+1} {colors.RED}failed{colors.RESET}")
+            print(f"test no. {_c+1} {colors.RED}failed{colors.RESET}")
             res = False
-        c+=1
+        _c += 1
     assert res is True
 
 @pytest.mark.largest_power_of_2_less_than
@@ -85,15 +86,15 @@ def test_largest_power_of_2_less_than():
 
     """
 
-    lis = [16, 16, 32, 32, 64, 64, 64]
-    c = 0
+    _LIS = [16, 16, 32, 32, 64, 64, 64]
+    _c = 0
     res = True
 
-    for i in no:    
-        if largest_power_of_2_less_than(i) == lis[c]:
-            print(f"test no. {c+1} passed")
+    for i in NO:    
+        if largest_power_of_2_less_than(i) == _LIS[_c]:
+            print(f"test no. {_c+1} passed")
         else:
-            print(f"test no. {c+1} {colors.RED}failed{colors.RESET}")
+            print(f"test no. {_c+1} {colors.RED}failed{colors.RESET}")
             res = False
-        c+=1
+        _c += 1
     assert res is True
