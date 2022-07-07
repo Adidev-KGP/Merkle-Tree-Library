@@ -87,9 +87,8 @@ com('l',3,h6571234,proof)
 3==proof_size, so return 1
 if root == leaf else return 0
 
-as we can see that the function call started with 'l' and at the first step of Recursion Tree the leaf is inconsistent(it should have been h56 but its h65) and so it is gauranteed that this pattern of combination with leaf will lead to wrong hash in the further recursive calls.
-
 ```
+as we can see that the function call started with 'l' and at the first step of Recursion Tree the leaf is inconsistent(it should have been h56 but its h65) and so it is gauranteed that this pattern of combination with leaf will lead to wrong hash in the further recursive calls.
 
 lets start with left direction OR 'r'
 
@@ -113,6 +112,8 @@ com('l',3,h5671234,proof)    return 1              \
 if root == leaf else return 0
 This branch returns 0
 
+```
+
 as we can see that the function call started with 'r' and at the first step of Recursion Tree the leaf is consistent(it should have been h56 and it got calculated to h56 as well) and so it is possible that this pattern of combination with leaf may lead to correct hash in the further recursive calls. This is what exactly happens as the function reaches the last recursive call.
 
 So we can see that if the data is in the right branch and the number of leaves in the Merkle tree is not a power of 2 then we need to follow this recursive approach.
@@ -120,8 +121,6 @@ So we can see that if the data is in the right branch and the number of leaves i
 This may take O(logN) in best case and O(2^logN) in worst case.
 
 This recursion approach is implemented in verify_merkle_right_branch() in verifier.c
-
-```
 
 So we use the verify_merkle_proof_leaves_power_of_2() if the leaf is in the left branch or the number of leaves in the Merkle Tree is a power of 2 regardless of the position of any leaf.
 
