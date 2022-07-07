@@ -46,8 +46,6 @@ while MESSAGE != "end":
             MESSAGE = MESSAGE+i.hex()+" "
         MESSAGE.strip()
 
-        print(MESSAGE)
-
         CLIENT.sendall(MESSAGE.encode())
 
     #this elif statement deals with intsructions from the verifier starting with set
