@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul  7 09:36:31 2022
+# Make data base, printed on Thu Jul  7 17:01:55 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:29750
+JOURNAL_STREAM = 8:29639
 # makefile (from 'Makefile', line 3)
 CFLAGS = -g  
 # environment
@@ -77,7 +77,7 @@ _ = /snap/code/99/usr/share/code/code
 # makefile (from 'Makefile', line 4)
 CPPFLAGS = 
 # environment
-MANAGERPID = 691
+MANAGERPID = 686
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -91,7 +91,7 @@ PATH = /home/adidev/.local/bin:/home/adidev/.local/bin:/usr/local/sbin:/usr/loca
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/adidev-VirtualBox:@/tmp/.ICE-unix/1015,unix/adidev-VirtualBox:/tmp/.ICE-unix/1015
+SESSION_MANAGER = local/adidev-VirtualBox:@/tmp/.ICE-unix/1012,unix/adidev-VirtualBox:/tmp/.ICE-unix/1012
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -109,7 +109,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = b0c4772673054729a839e93aa7f972b7
+INVOCATION_ID = 7d876d4447964101852997a487811288
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # makefile (from 'Makefile', line 6)
@@ -123,7 +123,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1832
+GIO_LAUNCHED_DESKTOP_FILE_PID = 1757
 # automatic
 %F = $(notdir $%)
 # environment
@@ -137,7 +137,7 @@ PWD = /home/adidev/Merkle-Tree_Library
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 972
+SSH_AGENT_PID = 953
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -189,7 +189,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-39fe95a6-bf49-4024-908d-11a510b47d34.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4fba163c-fa23-4796-ab85-c6d97b77de82.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -261,7 +261,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1873
+VSCODE_PID = 1817
 # variable set hash-table stats:
 # Load=126/1024=12%, Rehash=0, Collisions=24/162=15%
 
@@ -320,7 +320,7 @@ all: integration/server.c verifier/verifier.c
 # Not a target:
 integration/server.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-07 07:44:17.34088153
+#  Last modified 2022-07-07 10:45:43.134998211
 #  File has been updated.
 #  Successfully updated.
 
@@ -364,6 +364,6 @@ clean:
 # strcache performance: lookups = 32 / hit rate = 25%
 # hash-table stats:
 # Load=24/8192=0%, Rehash=0, Collisions=1/32=3%
-# Finished Make data base on Thu Jul  7 09:36:31 2022
+# Finished Make data base on Thu Jul  7 17:01:56 2022
 
  
