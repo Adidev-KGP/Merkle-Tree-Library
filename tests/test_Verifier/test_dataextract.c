@@ -30,7 +30,6 @@ TEST test_hexstr_to_num(void) {
     }
 
     PASS();
-    
 }
 
 TEST test_hexstr_to_data(void) {

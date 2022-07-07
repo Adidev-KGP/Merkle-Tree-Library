@@ -7,14 +7,11 @@
 
 
 int hexstr_to_num(char str[]){
-
     /*
-
         This function converts a  1 byte hexadecimal string into  a decimal number
         which is the value in bytes of the heaxadecimal string.
 
         Eg: "ae" -> 174 
-
     */
 
     int num = 0;
@@ -34,7 +31,6 @@ int hexstr_to_num(char str[]){
 }
 
 void hexstr_to_data(char *hex_str, byte byte_data[]){
-
     /*
         This function converts a 32 byte long hexadecimal string into actual bytes and 
         stores the values of each byte in the pointer parameter byte_data[].
@@ -63,7 +59,6 @@ void hexstr_to_data(char *hex_str, byte byte_data[]){
 }
 
 void final_processed_data(char hex_data[][65], int size, byte final_data[][32]){
-
     /*
         This function converts accepts pointer to a char array.
         hex_data[][65] has the elements in hexadecimal string 
@@ -99,12 +94,9 @@ void sha256(byte data[], byte sha256_hash[], int n){
 
 
 void element_hash(byte data[], byte ele_hash[], int n){
-
     /*
-
         Given a pointer to array in unsigned char,
         this function finds the SHA256 hash of that data.
-
     */
 
     byte main_data[n+1];
@@ -112,16 +104,13 @@ void element_hash(byte data[], byte ele_hash[], int n){
     for(int i = 1; i < n+1; i++){
         main_data[i] = data[i-1];
     }
-
     sha256(main_data, ele_hash, n+1);
 }
 
 void combine_hashes(byte data1[], byte data2[], byte com_hash[]){
-
     /*
         Given two data namely data1 and data2 as unsigned char pointers,
         this function combines both the data bytes and computes the SHA256 hash.
-
     */
     byte com_data[65];
     com_data[0] = 1;
@@ -132,12 +121,10 @@ void combine_hashes(byte data1[], byte data2[], byte com_hash[]){
     for(int i = 33; i <= 64; i++){
         com_data[i] = data2[i-33];
     }
-
     sha256(com_data, com_hash, 65);
 }
 
 int verify_merkle_proof_leaves_power_of_2(byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size){
-
     /*
     Given a Merkle Tree having number leaves equal to some power of 2, 
     verify_merkle_proof_leaves_power_of_2() computes the root hash of such 
@@ -146,7 +133,6 @@ int verify_merkle_proof_leaves_power_of_2(byte root[], int len, int index, byte 
     Returns 1 is the calculated_hash == root hash else 0.
 
     Time complexity : O(log2(N)) where N is the number of leaves
-    
     */
 
     index += 1;
@@ -181,13 +167,10 @@ int verify_merkle_proof_leaves_power_of_2(byte root[], int len, int index, byte 
     }
     if(c == 1)return 1;
     else return 0;
-
 }
 
 
 int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size){
-
-
     /*
         Given a Merkle Tree which has number of leaves not equal to some power of 2,
         ver_merkle_right_branch() computes the root hash of such a Merkle Tree 
@@ -205,7 +188,6 @@ int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte l
         1) The Merkle Tree has number of leaves not equal to some power of 2
         2) The leaf using which root hash is computed is in the right branch 
         of the Merkle Tree.
-    
     */
 
     if(index == proof_size){
@@ -214,7 +196,6 @@ int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte l
             if(leaf[i] == root[i])c = 1;
             else c = 0;
         }
-
         if(c == 1)return 1;
         else return 0;
     }
@@ -230,11 +211,9 @@ int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte l
 
     int y = verify_merkle_right_branch('r', root, len, index+1, leaf, proof, proof_size);
     if(y == 1)return y;
-
 }
 
 int verify_merkle_proof(byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size){
-
     /*
         verify_merkle_proof uses a combination of 2 functions to compute root hash:
 
