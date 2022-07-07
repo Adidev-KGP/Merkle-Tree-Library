@@ -43,7 +43,7 @@ This project has 2 separate libraries:
 - Integration of C library (integration/server.c)
 
 ## READMEs
-- #### [prover/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/prover/README.md")
+- # [prover/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/prover/README.md")
 - #### [verifier/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/verifier/README.md")
 - #### [integration/README.md]("https://github.com/Adidev-KGP/Merkle-Tree-Library/blob/main/integration/README.md")
 
