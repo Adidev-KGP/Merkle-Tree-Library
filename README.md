@@ -102,33 +102,51 @@ Owner:~/Merkle-Tree_Library$
 - Start the communication from the Prover's side
 
 - The verifier can only give two queries to which the Prover will respond with data:
-```
+
 query 1:
 
-get <index_of_leaf>
+```get <index_of_leaf>```
+
+Example:
+
+```get 3 ```
+
 
 This instruction fetches the verifier the hash of the leaf with index x along with merkle proof and other data so that it can verify the data received by it.
 
-Example:
+Demo:
+
+```
 get 3
 [PROVER] g18 3 5 1a9902a9e309d97ca1968208eb86bdbb9d8c4e4f2087ff37f26d281366215131 6466af8187ef517b640c1d68179fa0a4e906c58e79473ae8cf133cf74a8c12f0 17eedb89e621a7e29742498c31a0cdd4e0a8d94ae2a8de9ae834dd4f3559909b f4e8bbacc532685d0991e1a6220630a1168f410ad9efcd607ec2f2987791afce 684c86919301215987294c876063c4bd76ffdc7516bc94e499c005fc420cc889 6450d8d53fb8c2aa593df6fdbeab5a61b4c86054ba1c18f485134d1d260064b3 d254e436d788da47283e475937074f685b8ebf5f00f0984b0f8f7ef40e64c9df 
 Verified! The data sent is correct
 
+```
+
 query 2:
 
-set <index_of_leaf> <value> <Datatype>
+```set <index_of_leaf> <value> <Datatype>```
+
+Example:
+
+```set 3 crypto string```
 
 This instruction fetches the verifier the proof of correct update after replacing the old leaf at index <index> with the <value>.
 
-Example:
+Demo:
+
+```
 set 3 45 int
 [PROVER] s18 3 5 1a9902a9e309d97ca1968208eb86bdbb9d8c4e4f2087ff37f26d281366215131 6466af8187ef517b640c1d68179fa0a4e906c58e79473ae8cf133cf74a8c12f0 98aaf248675ae116e4a9828e2c23a86cecc2af8151f68046693fde790b0c08f8 0b0dec6b68a0af52293c4f4e5c8046f78b71b51f88688aa09cbd448da2e62ff6 17eedb89e621a7e29742498c31a0cdd4e0a8d94ae2a8de9ae834dd4f3559909b f4e8bbacc532685d0991e1a6220630a1168f410ad9efcd607ec2f2987791afce 684c86919301215987294c876063c4bd76ffdc7516bc94e499c005fc420cc889 6450d8d53fb8c2aa593df6fdbeab5a61b4c86054ba1c18f485134d1d260064b3 d254e436d788da47283e475937074f685b8ebf5f00f0984b0f8f7ef40e64c9df 
 Verified! The data sent is correct
+```
 
 Other instructions maybe:
-set 4 github string
-set 7 football string
-```
+
+```set 4 github string```
+
+```set 7 football string```
+
 - To end the communication press B on the Verifier's side.
 
 To know about how data is sent to verifier and other in-depth things refer to  
@@ -272,8 +290,9 @@ Owner:~/Merkle-Tree_Library$
 Run the tests separately:
 
 To run the tests separately use the following command:
+
+```pytest -m <marker_name>```
 ```
-pytest -m <marker_name>
 
 Example:
 
@@ -290,8 +309,7 @@ tests/test_Prover/test_mer_math.py .                                            
 ============================ 1 passed, 10 deselected, 11 warnings in 0.54s ============================
 
 ```
-You will find the marker names in tests/README.md OR you can look up for them in the tests/test_Prover/
- folder and in each .py file there are functions which start with test_.
+You will find the marker names in the tests/test_Prover/ folder and in each .py file there are functions which start with test_
 Above the definition of function prototype marker names are given 
 
 Eg:
@@ -303,7 +321,7 @@ inside tests/test_Prover/test_cls_merkle.py you will find the following on line 
 def test_set():
 ```
 
-Here set is the marker name of test_set() function.
+Here ```set```is the marker name of ```test_set()``` function.
 
 So to run test_set() we give the following command:
 ```
@@ -323,17 +341,55 @@ tests/test_Prover/test_cls_merkle.py .                                          
 Owner:~/Merkle-Tree_Library$ 
 ```
 
+List of all test functions with their markers:
+
+```
+@pytest.mark.set
+def test_set()
+
+@pytest.mark.merkle_proof
+def test_merkle_proofs()
+
+@pytest.mark.make_tree
+def test_make_tree()
+
+@pytest.mark.sha256
+def test_sha256()
+
+@pytest.mark.element_hash
+def test_element_hash()
+
+@pytest.mark.combine_hash
+def test_combine_hashes()
+
+@pytest.mark.floor_lg
+def test_floor_lg()
+
+@pytest.mark.ceil_lg
+def test_ceil_lg()
+
+@pytest.mark.power_of_2
+def test_is_power_of_2()
+
+@pytest.mark.largest_power_of_2_less_than
+def test_largest_power_of_2_less_than()
+
+@pytest.mark.Node
+def test_node()
+
+```
+
 ### Running the Verifier's unit-tests
 
-To run the test_dataextract.c unit-test program:
+To run the ```test_dataextract.c``` unit-test program:
 ```
 Owner:~/Merkle-tree_Library$ run_test.sh dex
 ```
-To run the test_hashfunc.c unit-test program:
+To run the ```test_hashfunc.c``` unit-test program:
 ```
 Owner:~/Merkle-tree_Library$ run_test.sh hfn
 ```
-To run the test_ver_merkle_proof.c unit-test program:
+To run the ```test_ver_merkle_proof.c``` unit-test program:
 ```
 Owner:~/Merkle-tree_Library$ run_test.sh ver_mer
 ```

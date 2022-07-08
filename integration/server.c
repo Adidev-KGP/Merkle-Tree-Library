@@ -172,7 +172,7 @@ void server(){
   int server_fd, client_fd;
   struct sockaddr_in server_addr, client_addr;
   socklen_t addr_size;
-  int buffer_size  =265*70;
+  int buffer_size  =270*70;
   char buffer[buffer_size];
 
   // Server socket

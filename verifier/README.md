@@ -32,9 +32,9 @@ index = 2
 
 Now for h3 we need to think that we should combine h3 and h4 in  which order(h3, h4) OR (h4, h3)
 
-lets us add 1 to index , so index is 3
+lets us add 1 to index , so index is 3. 
 
-3 is odd therefore (h3, h4) order is correct
+3 is odd therefore (h3, h4) order is correct.
 
 combine{(h3, h4)} = h34
 
@@ -54,7 +54,7 @@ combine{(h1234, h567)} = h1234567
 
 So finally we got our correct root hash h1234567
 
-The process described is implemented in the function verify_merkle_proof_leaves_power_of_2()
+The process described is implemented in the function ```verify_merkle_proof_leaves_power_of_2()```
 
 So this process gives us the correct direction of merging data hash and merkle proofs to get the correct root hash. It works fine if the data is either in the left branch or the number of leaves in the Mekrle Tree is a power of 2. If you find it hard to understand try it with pen and paper and draw few samples and then all the explantion will make sense.
 
@@ -65,9 +65,9 @@ lets consider index 5 or h6
 
 Merkle Proof of h6={h5, h7, h1234}
 
-lets describe a function com(char dir, int index, leaf, proof) which takes a charater parameter 'r' OR 'l' stating the direction right/left from which to combine
+lets describe a function com(char dir, int index, leaf, proof) which takes a charater parameter ```'r'``` OR ```'l'``` stating the direction right/left from which to combine
 
-lets start with left direction OR 'l'
+lets start with left direction OR ```'l'```
 ```
                             com('l', 0, h6, proof)
                             leaf= combine(h6, h5)=h65
@@ -88,9 +88,9 @@ com('l',3,h6571234,proof)
 if root == leaf else return 0
 
 ```
-as we can see that the function call started with 'l' and at the first step of Recursion Tree the leaf is inconsistent(it should have been h56 but its h65) and so it is gauranteed that this pattern of combination with leaf will lead to wrong hash in the further recursive calls.
+as we can see that the function call started with ```'l'``` and at the first step of Recursion Tree the leaf is inconsistent(it should have been h56 but its h65) and so it is gauranteed that this pattern of combination with leaf will lead to wrong hash in the further recursive calls.
 
-lets start with left direction OR 'r'
+lets start with right direction OR ```'r'```
 
 ```
                             com('r', 0, h6, proof)
@@ -114,17 +114,17 @@ This branch returns 0
 
 ```
 
-as we can see that the function call started with 'r' and at the first step of Recursion Tree the leaf is consistent(it should have been h56 and it got calculated to h56 as well) and so it is possible that this pattern of combination with leaf may lead to correct hash in the further recursive calls. This is what exactly happens as the function reaches the last recursive call.
+as we can see that the function call started with ```'r'``` and at the first step of Recursion Tree the leaf is consistent(it should have been h56 and it got calculated to h56 as well) and so it is possible that this pattern of combination with leaf may lead to correct hash in the further recursive calls. This is what exactly happens as the function reaches the last recursive call.
 
 So we can see that if the data is in the right branch and the number of leaves in the Merkle tree is not a power of 2 then we need to follow this recursive approach.
 
 This may take O(logN) in best case and O(2^logN) in worst case.
 
-This recursion approach is implemented in verify_merkle_right_branch() in verifier.c
+This recursion approach is implemented in ```verify_merkle_right_branch()``` in ```verifier.c```
 
-So we use the verify_merkle_proof_leaves_power_of_2() if the leaf is in the left branch or the number of leaves in the Merkle Tree is a power of 2 regardless of the position of any leaf.
+So we use the ```verify_merkle_proof_leaves_power_of_2()``` if the leaf is in the left branch or the number of leaves in the Merkle Tree is a power of 2 regardless of the position of any leaf.
 
-We use verify_merkle_right_branch() if the leaf is in the right branch and the number of leaves in the Merkle Tree is not a power of 2.
+We use ```verify_merkle_right_branch()``` if the leaf is in the right branch and the number of leaves in the Merkle Tree is not a power of 2.
 
 Since we know that left branch has ${2^k}$ leaves such that k is the largest integer possible for ${2^k}$ < N , it can be concluded that
 
@@ -132,4 +132,4 @@ Since we know that left branch has ${2^k}$ leaves such that k is the largest int
 - the probability of merkle proof verification to be O(${2 ^l}$) can be less than or equal to 1-${2^k}$/N.
 where l = ${log{_2}{n}}$
 
-Inside verify_merkle_proof() both these functions are called depending on the situation and position of data in the Merkle Tree.
+Inside ```verify_merkle_proof()``` both these functions are called depending on the situation and position of data in the Merkle Tree.
