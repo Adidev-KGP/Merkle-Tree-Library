@@ -81,8 +81,39 @@ while MESSAGE != "end":
         MESSAGE.strip()
         CLIENT.sendall(MESSAGE.encode())
 
+    #this elif statement deals with intsructions from the verifier starting with add
+    #data sent to verifier is in the following sequence
+    #(length, index, proof_size, root_hash, leaf_hash, proof)
+    elif DATA.split(" ")[0] == "add":
+        DATA_type = DATA.split(" ")[2]
+        VALUE = DATA.split(" ")[1]
+        if DATA_type == "string":
+            VALUE = VALUE.encode()
+        elif DATA_type == "int":
+            VALUE = int(VALUE)
+            VALUE = VALUE.to_bytes(20, 'big')
+
+        OBJ.add(VALUE)
+
+        INDEX = OBJ.__len__() - 1
+
+        leaf = OBJ.get(INDEX)
+        proof = OBJ.prove_leaf(INDEX)
+        MESSAGE = "a"
+        MESSAGE = MESSAGE+str(INDEX + 1)+" "
+        MESSAGE = MESSAGE+str(INDEX)+" "
+        MESSAGE = MESSAGE+str(len(proof))+" "
+        MESSAGE = MESSAGE+OBJ.root.hex()+" "
+        MESSAGE = MESSAGE+leaf.hex()+" "
+
+        for i in proof:
+            MESSAGE = MESSAGE+i.hex()+" "
+        MESSAGE.strip()
+
+        CLIENT.sendall(MESSAGE.encode())
+
     else:
         MESSAGE = input()
         CLIENT.sendall(MESSAGE.encode())
-       
+
 CLIENT.close()

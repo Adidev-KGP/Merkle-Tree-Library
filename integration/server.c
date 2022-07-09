@@ -38,7 +38,7 @@ void parse_get(char buffer[], int *len, int *ind, int *proof_size, byte root[], 
       parse_get() breaks down this information and helps to store them
       into relevamt datatypes
   */
-  char * token = strtok(buffer, " ");
+  char *token = strtok(buffer, " ");
   char extracted_data[270][70];
   int c = 0;
   while( token != NULL ) {
@@ -232,6 +232,18 @@ void server(){
       else{
         printf("False information given\n");
       }
+    }else if(buffer[0] == 'a'){
+      int len;
+      int ind;
+      int prf_s;
+      byte root[32];
+      byte leaf[32];
+      byte proof[260][32];
+      parse_get(buffer, &len, &ind, &prf_s, root, leaf, proof);
+
+      int n = verify_merkle_proof(root, len, ind, leaf, proof, prf_s);
+      if(n == 1)printf("Verified! The data has been succesfully added\n");
+      else printf("OOPs! Some problem occured\n");
     }
     fgets(buffer,buffer_size,stdin);
     
@@ -301,6 +313,36 @@ void server(){
       send(client_fd, buffer, strlen(buffer), 0);  // sending information from PROVER
       continue;
 
+    }else if(buffer[0] == 'a'){
+      send(client_fd, buffer, strlen(buffer), 0);  // sending information from PROVER
+      memset(buffer, '\0', buffer_size*sizeof(char));
+      recv(client_fd, buffer, buffer_size, 0);  // reveiving information from PROVER
+      printf("[PROVER] %s\n", buffer);
+
+      int len;
+      int ind;
+      int prf_s;
+      byte root[32];
+      byte leaf[32];
+      byte proof[260][32];
+      parse_get(buffer, &len, &ind, &prf_s, root, leaf, proof);
+
+      int n = verify_merkle_proof(root, len, ind, leaf, proof, prf_s);
+      if(n == 1){
+        printf("Verified! The data has been succesfully added\n");
+      }
+      else{
+        printf("OOPs! Some problem occured\n");
+      }
+
+      fgets(buffer, buffer_size, stdin);
+      if(buffer[0] == 'B'){
+        send(client_fd, "end", 3, 0);  // sendving information from PROVER
+        break;
+      } 
+      send(client_fd, buffer, strlen(buffer), 0);  // sending information from PROVER
+      continue;
+    
     }else if(buffer[0] == 'B'){
         send(client_fd, "end", 3, 0);  // sending information from PROVER
         break;

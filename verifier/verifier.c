@@ -170,7 +170,7 @@ int verify_merkle_proof_leaves_power_of_2(byte root[], int len, int index, byte 
 }
 
 
-int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size){
+int verify_merkle_right_branch(char dir, byte root[], int index, byte leaf[], byte proof[][32], int proof_size){
     /*
         Given a Merkle Tree which has number of leaves not equal to some power of 2,
         ver_merkle_right_branch() computes the root hash of such a Merkle Tree 
@@ -194,10 +194,12 @@ int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte l
         int c = 0;
         for(int i = 0; i < 32; i++){
             if(leaf[i] == root[i])c = 1;
-            else c = 0;
+            else{
+                c = 0;
+                break;
+            }
         }
-        if(c == 1)return 1;
-        else return 0;
+        return c;
     }
 
     if(dir == 'l'){
@@ -206,11 +208,22 @@ int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte l
         combine_hashes(proof[index], leaf, leaf);
     }
 
-    int x = verify_merkle_right_branch('l', root, len, index+1, leaf, proof, proof_size);
-    if(x == 1)return x;
+    byte leaf_cpy[32];
+    for(int i=0;i<32;i++){
+        leaf_cpy[i]=leaf[i];
+    }
 
-    int y = verify_merkle_right_branch('r', root, len, index+1, leaf, proof, proof_size);
-    if(y == 1)return y;
+    int x = verify_merkle_right_branch('l', root, index+1, leaf_cpy, proof, proof_size);
+    for(int i=0;i<32;i++){
+        leaf_cpy[i]=leaf[i];
+    }
+
+    int y = verify_merkle_right_branch('r', root, index+1, leaf_cpy, proof, proof_size);
+    for(int i=0;i<32;i++){
+        leaf_cpy[i]=leaf[i];
+    }
+    
+    return x||y;
 }
 
 int verify_merkle_proof(byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size){
@@ -242,19 +255,38 @@ int verify_merkle_proof(byte root[], int len, int index, byte leaf[], byte proof
             return x;
         }else{
             if(index+1 == len){
-                int x = verify_merkle_right_branch('r', root, len, 0, leaf, proof, proof_size);
+                int x = verify_merkle_right_branch('r', root, 0, leaf, proof, proof_size);
                 return x;
             }
 
-            if((index+1)%2 == 0 && (index+1)!=1){
-                int x = verify_merkle_right_branch('r', root, len, 0, leaf, proof, proof_size);
+            if((index+1)%2 == 0 && (index+1) != len){
+                int x = verify_merkle_right_branch('r', root, 0, leaf, proof, proof_size);
                 return x;
-            }else if((index+1)%2 !=0 && index+1 != len){
-                int x =verify_merkle_right_branch('l', root, len, 0, leaf, proof, proof_size);
+            }else if((index+1)%2 !=0 && (index+1) != len){
+                int x =verify_merkle_right_branch('l', root, 0, leaf, proof, proof_size);
                 return x;
             }
         }
 
     }
 
+}
+
+int check(byte root[], int index, byte leaf[], byte proof[][32], int proof_size){
+    if(index == proof_size){
+        int c=0;
+        for(int i=0;i<32;i++){
+            if(leaf[i] == root[i])c = 1;
+            else{
+                c=0;
+                break;
+            }
+        }
+        printf("%d\n",c);
+        return c;
+    }
+    
+    combine_hashes(proof[index],leaf,leaf);
+    int x = check(root,index+1, leaf, proof, proof_size);
+    return x;
 }

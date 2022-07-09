@@ -15,7 +15,7 @@ void element_hash(byte data[], byte ele_hash[], int n);
 
 int verify_merkle_proof_leaves_power_of_2(byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size);
 
-int verify_merkle_right_branch(char dir, byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size);
+int verify_merkle_right_branch(char dir, byte root[], int index, byte leaf[], byte proof[][32], int proof_size);
 
 int verify_merkle_proof(byte root[], int len, int index, byte leaf[], byte proof[][32], int proof_size);
 
