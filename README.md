@@ -47,7 +47,7 @@ This project has 2 separate libraries:
 - #### [verifier/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/verifier)
 - #### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/integration)
 
-## Building and running the Integration
+## Building and running the Integration ([demo](https://www.youtube.com/watch?v=8nOzZWyNWwo))
 
 Activate the verifier using the following commands.
 ``` 
@@ -152,7 +152,7 @@ Other instructions maybe:
 To know about how data is sent to verifier and other in-depth things refer to  
 #### [integration/README.md](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/integration).
 
-## Building and running unit-tests
+## Building and running unit-tests([demo](https://www.youtube.com/watch?v=rr5vdA4gB94))
 
 You will find the unit tests for Prover and Verifier in 
 #### [tests/test_Prover](https://github.com/Adidev-KGP/Merkle-Tree-Library/tree/main/tests/test_Prover) 
@@ -383,15 +383,15 @@ def test_node()
 
 To run the ```test_dataextract.c``` unit-test program:
 ```
-Owner:~/Merkle-tree_Library$ run_test.sh dex
+Owner:~/Merkle-tree_Library$ ./run_test.sh dex
 ```
 To run the ```test_hashfunc.c``` unit-test program:
 ```
-Owner:~/Merkle-tree_Library$ run_test.sh hfn
+Owner:~/Merkle-tree_Library$ ./run_test.sh hfn
 ```
 To run the ```test_ver_merkle_proof.c``` unit-test program:
 ```
-Owner:~/Merkle-tree_Library$ run_test.sh ver_mer
+Owner:~/Merkle-tree_Library$ ./run_test.sh ver_mer
 ```
 
 ```
