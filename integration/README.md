@@ -94,7 +94,7 @@ To extract all this information from a single string ```parse_set()``` function 
 The length of the whole string is safely less than ```270*70``` or ```18900``` because we are using sha256 as the hash function and there can be a total of only ```2^256``` sha256 hashes each of length ```64``` in hexadecimal format. So here we get ```256*64```. Also old and new leaf hash as well as old and new root hash are there in the string therefore the exact length can be considered to be ```260*64```. Since there are spaces and integers which will be less than or equal to ```2^256``` since they are size of Merkle tree, index which is but obvious less than size of Merkle Tree and size of proof which is log of size of Merkle Tree.
 So it is totally safe if we consider ```18900``` as the maximum length of string though this is also much greater than the actual string can ever be.
 
-Since each element of the string is a standard ASCII value therefore each string element is 1 byte. So the maximum size of string that is sent to verifier is 18900 bytes or approximately ```18.5 MB```.
+Since each element of the string is a standard ASCII value therefore each string element is 1 byte. So the maximum size of string that is sent to verifier is 18900 bytes or approximately ```18.5 kB```.
 
 
 
